@@ -49,7 +49,7 @@ public class ATMApp {
                 sc.nextLine(); // consume the newline
 
                 switch (choice) {
-                    case 1:
+                    case 1 -> {
                         System.out.print("Enter withdrawal amount: ");
                         double withdrawAmount = sc.nextDouble();
                         if (withdrawAmount > 0) {
@@ -58,31 +58,27 @@ public class ATMApp {
                         } else {
                             System.out.println("Invalid withdrawal amount.");
                         }
-                        break;
-                    case 2:
+                    }
+                    case 2 -> {
                         System.out.print("Enter new 4-digit PIN: ");
                         int newPin = sc.nextInt();
                         atm.updatePin(newPin);
                         System.out.println("PIN updated successfully!");
-                        break;
-                    case 3:
+                    }
+                    case 3 -> {
                         System.out.print("Enter new username: ");
                         String newUser = sc.nextLine();
                         atm.updateUser(newUser);
                         System.out.println("Username updated successfully!");
-                        break;
-                    case 4:
+                    }
+                    case 4 -> {
                         System.out.print("Enter new mobile number: ");
                         String newMobileNumber = sc.nextLine();
                         atm.updateMobileNumber(newMobileNumber);
                         System.out.println("Mobile number updated successfully!");
-                        break;
-                    case 5:
-                        System.out.println("Logged out successfully!");
-                        break;
-                    default:
-                        System.out.println("Invalid choice.");
-                        break;
+                    }
+                    case 5 -> System.out.println("Logged out successfully!");
+                    default -> System.out.println("Invalid choice.");
                 }
             } else {
                 System.out.println("Invalid account number or PIN. Access denied.");
