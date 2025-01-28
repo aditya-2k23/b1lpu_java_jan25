@@ -5,12 +5,14 @@ public class User {
     private String phnNo;
     private String acctNo;
     private double balance;
+    private String PIN;
     public User(){
         System.out.println("default");
     }
-    public User(String  name, String acctNo){
+    public User(String  name, String acctNo,String PIN){
         this.acctNo = acctNo;
         this.name = name;
+        this.PIN = PIN;
     }
     // getters
     public String getName(){
@@ -25,7 +27,9 @@ public class User {
     public double getBalance(){
         return balance;
     }
-
+    public String getPin(){
+        return PIN;
+    }
     // Setter
     public void setPhnNo(String phnNo){
         this.phnNo = phnNo;
