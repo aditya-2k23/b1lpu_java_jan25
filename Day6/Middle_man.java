@@ -11,21 +11,28 @@ public class Middle_man {
     }
 
     // Authantication for card users
-    public boolean authForCard(String name,String Pin){
-        if(user.getName().equalsIgnoreCase(name) && user.getPin().equalsIgnoreCase(pin))return true;
-        return false;
+    public String authForCard(String name,String Pin){
+        if(user.getName().equalsIgnoreCase(name) && user.getPin().equalsIgnoreCase(Pin))return user.getAccNo();
+        return null;
     }
 
     // Methods to update balance for the user
-    public boolean debit(User obj,int val){
-        double balance = obj.getBalance();
+    public boolean debit(String acNo,int val){
+        double balance = user.getBalance();
         if(balance < val)return false;
-        obj.setBalance(balance-val);
+        user.setBalance(balance-val);
         return true;
     }
-    public boolean credit(User obj,int val){
-        double balance = obj.getBalance();
-        obj.setBalance(balance+val);
+    public boolean credit(String acNo,int val){
+        double balance = user.getBalance();
+        user.setBalance(balance+val);
+        return true;
+    }
+
+    // update pin method
+    public boolean changePin(String acNo,String oldPin,String newPin){
+        if(oldPin.equalsIgnoreCase(newPin))return false;
+        user.setPin(newPin);
         return true;
     }
 
