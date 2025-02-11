@@ -3,16 +3,50 @@ import java.util.Scanner;
 import Day6.Middle_man;
 
 public class ATM {
-    private static Scanner sc;
-    private void ATMOptions(String acctNo, String Pin){
+    private static Scanner sc = null;
+    private static Middle_man obj = null;
+    private static void ATMOptions(String acctNo, String Pin){
         // Give ATM options and take i/p
         System.out.println("Options");
         System.out.println("1. Check balance");
         System.out.println("2. Credit");
         System.out.println("3. Debit");
         System.out.println("4. Update Pin");
-        // int op = sc.nextInt();
-
+        int op = sc.nextInt();
+          
+        //Switch case
+        // make case for each option
+        // if anything else apart from these options are given then print wrng input
+        int amount = 0;
+        switch(op){
+            case 1:
+            System.out.println("checking balance");
+            System.out.println("your current balance is "+obj.getBalance());
+            break;
+            case 2:
+            System.out.println("Crediting..");
+            amount = sc.nextInt();
+            if(obj.credit(acctNo, amount)){
+                System.out.println("amount credited, updated balance is "+obj.getBalance());
+            }else System.out.println("not able to perform the operation");
+            break;
+            case 3:
+            System.out.println("Debiting..");
+            amount = sc.nextInt();
+            if(obj.debit(acctNo, amount)){
+                System.out.println("amount debited, updated balance is "+obj.getBalance());
+            }else System.out.println("not able to debit the amount");
+            break;
+            case 4:
+            System.out.println("updating pin...");
+            String nPin = sc.nextLine();
+            if(obj.changePin(acctNo, Pin, nPin)){
+                System.out.println("updated the pin");
+            }else System.out.println("not able to update the pin");
+            break;
+            default:
+            System.out.println("You have given a wrng choice!");
+        }
     }
     public static void main(String[] args) {
         //it ask the user that he/she want to do cardless transaction or not?
@@ -28,12 +62,13 @@ public class ATM {
             System.out.println("Please enter your account number and pin");
             String actNo = sc.nextLine();
             String pin = sc.nextLine();
-            Middle_man obj = new Middle_man();
+            obj = new Middle_man();
+            Middle_man obj2 = new Middle_man();
             String name = obj.authForCardLess(actNo, pin);
             if(name.equalsIgnoreCase("No user with such Account no.!"))System.out.println("You have given wrong account no. or pin !");
             else {System.out.println("Welcome "+name+"!");
                 // ATM options 
-            
+                ATMOptions(actNo,pin);
             }
 
 
@@ -43,11 +78,12 @@ public class ATM {
             System.out.println("Can you please enter your name and pin");
             String name  = sc.nextLine();
             String pin = sc.nextLine();
-            Middle_man obj = new Middle_man();
+            obj = new Middle_man();
             String actNo= obj.authForCard(name, pin);
             if(actNo.equals(null))System.out.println("No such user found");
             else {System.out.println("Welcome "+name+"!");
                 // ATM options
+                ATMOptions(actNo,pin);
             }
         }else System.out.println("Wrong input try again");
 

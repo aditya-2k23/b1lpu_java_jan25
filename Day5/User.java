@@ -9,10 +9,11 @@ public class User {
     public User(){
         System.out.println("default");
     }
-    public User(String  name, String acctNo,String PIN){
+    public User(String  name, String acctNo,String PIN,double balance){
         this.acctNo = acctNo;
         this.name = name;
         this.PIN = PIN;
+        this.balance = balance;
     }
     // getters
     public String getName(){
