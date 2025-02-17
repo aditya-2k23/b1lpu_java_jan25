@@ -1,4 +1,6 @@
 package Day6;
+import java.security.PublicKey;
+
 import Day5.User;
 public class Middle_man {
     // make dynamic in future
@@ -30,28 +32,50 @@ public class Middle_man {
 
     // Methods to update balance for the user
     public boolean debit(String acNo,int val){
-        for(var user : arr){double balance = user.getBalance();
-        if(balance < val)return false;
-        user.setBalance(balance-val);}
+        for(var user : arr){
+            if(user.getAccNo().equalsIgnoreCase(acNo)){
+                double balance = user.getBalance();
+                if(balance < val)return false;
+                user.setBalance(balance-val);
+            }
+        }
         return true;
     }
     public boolean credit(String acNo,int val){
-        for(var user : arr){double balance = user.getBalance();
-        user.setBalance(balance+val);}
+        for(var user : arr){
+            if(user.getAccNo().equalsIgnoreCase(acNo)){
+                double balance = user.getBalance();
+                user.setBalance(balance+val);
+            }
+        }
         return true;
     }
 
     // update pin method
     public boolean changePin(String acNo,String oldPin,String newPin){
         if(oldPin.equalsIgnoreCase(newPin))return false;
-        for(var user : arr)user.setPin(newPin); //modify it
+        
+        for(var user : arr){
+            if(user.getAccNo().equalsIgnoreCase(acNo)){            
+                user.setPin(newPin);
+            }
+        }
         return true;
     }
 
     // to get the balance of the user
-    public double getBalance(){
-         for(var user : arr)user.getBalance();
-         return 0;
+    public double getBalance(String acNo){
+        for(var user : arr){
+            if(user.getAccNo().equalsIgnoreCase(acNo)){
+                return user.getBalance();
+            }
+        }
+        return 0;
+    }
+
+    // create an account and this return the account number of the user after creating the account
+    public String createAccount(){
+        return "";
     }
 
 }
