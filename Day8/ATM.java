@@ -96,7 +96,12 @@ public class ATM {
         }else if(ip.equalsIgnoreCase("3")){
             System.out.println("creating account...");
             //API
-            String actNo = obj.createAccount();
+            String name = sc.nextLine();
+            double b = sc.nextDouble();
+            String pin = sc.nextLine();
+            String actNo = null;
+            if(name != null && pin != null)actNo = obj.createAccount(name,b,pin);
+            else System.out.println("Wrong input!");
             System.out.println("Your account number is "+actNo);
         }
         else System.out.println("Wrong input try again");
