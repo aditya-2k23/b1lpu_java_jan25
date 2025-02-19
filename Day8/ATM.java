@@ -3,6 +3,9 @@ import java.util.Scanner;
 import Day6.Middle_man;
 
 public class ATM {
+    public enum Type{
+        Savings,Current;
+    }
     private static Scanner sc = null;
     private static Middle_man obj = null;
     private static void ATMOptions(String acctNo, String Pin){
@@ -100,7 +103,11 @@ public class ATM {
             double b = sc.nextDouble();
             String pin = sc.nextLine();
             String actNo = null;
+            System.out.println("what kind of account you want to create ?");
+            String str = sc.nextLine();
+            String type = "current";
             if(name != null && pin != null)actNo = obj.createAccount(name,b,pin);
+            if(str.equalsIgnoreCase("Savings"))type = "savings";
             else System.out.println("Wrong input!");
             System.out.println("Your account number is "+actNo);
         }
